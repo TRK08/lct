@@ -1,6 +1,6 @@
 <template>
   <n-spin v-if="fetchStatus === 'loading'" size="large" style="width: 100%;" />
-  <n-grid v-if="archive.length > 0" cols="4" x-gap="16" y-gap="16">
+  <n-grid v-if="archive.length > 0" cols="2 800:3" x-gap="16" y-gap="16">
     <n-gi v-for="item in archive" :key="item.id">
       <ArchiveCard :archiveItem="item" @click="loadVideo(item.id)" />
     </n-gi>
