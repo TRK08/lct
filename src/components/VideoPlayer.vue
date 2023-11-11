@@ -20,7 +20,7 @@ onMounted(() => {
 
   console.log(path, 'PATH')
 
-  if (Hls.isSupported()) {
+  if (Hls.isSupported() && videoEl) {
     let hls = new Hls();
     hls.loadSource(path);
     hls.attachMedia(videoEl);
