@@ -13,7 +13,7 @@
   </n-card>
 
   <n-modal v-model:show="streamSrc"  preset="card" style="width: fit-content; min-width: 40vw" @close="RTSPLink = null">
-    <img style="max-width: 40vw; min-height: 40vh; width: 100%; height: 100%" :src="streamSrc" alt="stream"/>
+    <img v-if="streamSrc" style="max-width: 40vw; min-height: 40vh; width: 100%; height: 100%" :src="streamSrc" alt="stream"/>
   </n-modal>
 
 </template>
@@ -35,7 +35,7 @@ const inputThemeOverridesDark: InputThemeOverrides = {
 }
 
 const streamSrc = ref<string | null>(null)
-const RTSPLink = ref('')
+const RTSPLink = ref<string | null>(null)
 const sendRTSPlink = () => {
   streamSrc.value = `https://89.232.165.248.sslip.io/api/v1/ml/rl?url_rtsp=${RTSPLink.value}`
 }

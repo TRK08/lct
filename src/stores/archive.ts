@@ -14,7 +14,7 @@ export const useArchiveStore = defineStore('archive',  {
         archive: []
     }),
     actions: {
-        async getArchive() {
+        async getArchive(): Promise<any> {
             try {
                 const res = await axios
                     .get('https://89.232.165.248.sslip.io/api/v1/ml/list')
