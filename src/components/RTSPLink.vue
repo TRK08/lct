@@ -8,8 +8,14 @@
     <n-button
         type="primary"
         style="width: 100%; margin-top: 1rem"
+        @click="sendRTSPlink"
     >Отправить</n-button>
   </n-card>
+
+  <n-modal v-model:show="streamSrc"  preset="card" style="width: fit-content; min-width: 40vw" @close="RTSPLink = null">
+    <img style="max-width: 40vw; min-height: 40vh; width: 100%; height: 100%" :src="streamSrc" alt="stream"/>
+  </n-modal>
+
 </template>
 
 <script setup lang="ts">
@@ -28,7 +34,11 @@ const inputThemeOverridesDark: InputThemeOverrides = {
   color: '#333333'
 }
 
+const streamSrc = ref<string | null>(null)
 const RTSPLink = ref('')
+const sendRTSPlink = () => {
+  streamSrc.value = `https://89.232.165.248.sslip.io/api/v1/ml/rl?url_rtsp=${RTSPLink.value}`
+}
 
 </script>
 

@@ -16,7 +16,7 @@ const video = ref<HTMLVideoElement | null>(null)
 
 onMounted(() => {
   const videoEl = video.value
-  const path = `https://89.232.165.248.sslip.io/${props.path}`
+  const path = `https://89.232.165.248.sslip.io:9002/${props.path}`
 
   console.log(path, 'PATH')
 

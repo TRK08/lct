@@ -1,12 +1,11 @@
 import {defineStore} from "pinia";
 import axios from "axios";
 import  {type UploadFileInfo} from "naive-ui";
-import { v4 as uuidv4 } from 'uuid';
 
 
 interface IState {
     fetchStatus: 'init' | 'loading' | 'error' | 'success'
-    videoPath: string | null,
+    videoPath: string | null
     videoId: string | null
 }
 
@@ -53,7 +52,8 @@ export const useVideoStore = defineStore('video',  {
         },
         async checkVideoStatus(id: string) {
             try {
-                const res = await axios.get(`https://89.232.165.248.sslip.io/api/v1/ml/check?id=${id}`);
+                const res = await axios
+                    .get(`https://89.232.165.248.sslip.io/api/v1/ml/check?id=${id}`);
                 if (res.data) {
                     this.fetchStatus = 'success'
                     this.videoPath = res.data.url
@@ -67,7 +67,7 @@ export const useVideoStore = defineStore('video',  {
                     const status = e.response?.status
                     switch (status) {
                         case 404:
-                            setTimeout(() => this.checkVideoStatus(this.videoId || ''), 5000)
+                            setTimeout(() => this.checkVideoStatus(this.videoId || ''), 10000)
                             break
                         default:
                             return {

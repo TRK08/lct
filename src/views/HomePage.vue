@@ -15,7 +15,7 @@
       <n-result
           v-else
           status="info"
-          description="Подождите, видео обрабатывается"
+          title="Подождите, видео обрабатывается"
       >
         <template #footer>
           <n-spin size="large" />
@@ -23,21 +23,23 @@
       </n-result>
 
     </n-modal>
-
-
   </div>
 </template>
 
 <script setup lang="ts">
 import {storeToRefs} from "pinia";
-import { ArchiveOutline } from '@vicons/ionicons5'
 import {useVideoStore} from "@/stores/video";
 import UploadFile from "@/components/UploadFile.vue";
 import VideoPlayer from "@/components/VideoPlayer.vue";
 import RTSPLink from "@/components/RTSPLink.vue";
-import {computed} from "vue";
+import { onBeforeUnmount} from "vue";
 
 const {fetchStatus, videoId, videoPath} = storeToRefs(useVideoStore())
+
+onBeforeUnmount(() => {
+  videoId.value = null
+  videoPath.value = null
+})
 
 
 
