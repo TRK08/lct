@@ -1,5 +1,5 @@
 <template>
-  <n-card>
+  <n-card hoverable style="cursor: pointer">
     <p>{{props.archiveItem.name}}</p>
   </n-card>
 </template>

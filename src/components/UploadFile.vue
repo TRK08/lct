@@ -38,13 +38,21 @@ import {type UploadFileInfo, useNotification} from "naive-ui";
 
 const notification = useNotification()
 
-const {fetchStatus} = storeToRefs(useVideoStore())
+const {fetchStatus, videoId} = storeToRefs(useVideoStore())
 const {uploadVideo, checkVideoStatus} = useVideoStore()
 
 const upload = async (file: UploadFileInfo) => {
   const res = await uploadVideo(file)
   if (res?.id) {
-    await checkVideoStatus(res.id)
+    const status = await checkVideoStatus(res.id)
+
+    if (status?.status === 'error' && status?.code === 500) {
+      notification.error({
+        content: 'Что-то пошло не так',
+        duration: 3000
+      })
+      videoId.value = null
+    }
   }
  if (res?.status === 'error') {
     notification.error({

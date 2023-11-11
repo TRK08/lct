@@ -50,10 +50,11 @@ const loadArchive = async () => {
 }
 
 const loadVideo = async (id: string) => {
-  const res = await checkVideoStatus(id)
+  const res = await checkVideoStatus(id, true)
+  console.log(res, 'RES')
   if (res?.status === 'error') {
-    notification.error({
-      content: 'Не удалось загрузить архив',
+    notification.warning({
+      content: 'Видео еще не обработано',
       duration: 3000
     })
   }
