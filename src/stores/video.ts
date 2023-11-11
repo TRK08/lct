@@ -65,7 +65,6 @@ export const useVideoStore = defineStore('video',  {
                 this.fetchStatus = 'error'
                 if (axios.isAxiosError(e)) {
                     const status = e.response?.status
-
                     if(permanent) {
                         return {
                             status: this.fetchStatus,
