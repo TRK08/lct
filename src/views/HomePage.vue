@@ -5,20 +5,24 @@
       <n-tab-pane name="video" tab="Видео">
         <UploadFile />
       </n-tab-pane>
-      <n-tab-pane name="link" tab="RTSP ссылка">
+      <n-tab-pane name="link" tab="RTSP поток">
         <RTSPLink />
       </n-tab-pane>
     </n-tabs>
 
-    <n-modal v-model:show="videoPath"  preset="card" style="width: fit-content">
-      <n-card >Видео обрабатывается</n-card>
-       <VideoPlayer v-if="videoPath" :path="videoPath" />
+    <n-modal v-model:show="videoId"  preset="card" style="width: fit-content; min-width: 50vw">
+      <VideoPlayer v-if="videoPath" :path="videoPath" />
+      <n-result
+          v-else
+          status="info"
+          description="Подождите, видео обрабатывается"
+      >
+        <template #footer>
+          <n-spin size="large" />
+        </template>
+      </n-result>
+
     </n-modal>
-
-
-<!--    <video controls>-->
-<!--      <source src="http://45.9.27.201/api/v1/ml/get_video?id=b8498b24-990b-4e76-afdc-dc371b6430a7" >-->
-<!--    </video>-->
 
 
   </div>
@@ -31,8 +35,10 @@ import {useVideoStore} from "@/stores/video";
 import UploadFile from "@/components/UploadFile.vue";
 import VideoPlayer from "@/components/VideoPlayer.vue";
 import RTSPLink from "@/components/RTSPLink.vue";
+import {computed} from "vue";
 
-const {fetchStatus, videoPath} = storeToRefs(useVideoStore())
+const {fetchStatus, videoId, videoPath} = storeToRefs(useVideoStore())
+
 
 
 </script>

@@ -26,7 +26,7 @@ export const useVideoStore = defineStore('video',  {
             formData.append('video', file?.file as File);
 
             try {
-                const res = await axios.post(`http://89.232.165.248/api/v1/ml/load`, formData, {
+                const res = await axios.post(`https://89.232.165.248.sslip.io/api/v1/ml/load`, formData, {
                     headers: {
                         'content-type': 'multipart/form-data'
                     }
@@ -53,7 +53,7 @@ export const useVideoStore = defineStore('video',  {
         },
         async checkVideoStatus(id: string) {
             try {
-                const res = await axios.get(`http://89.232.165.248/api/v1/ml/check?id=${id}`);
+                const res = await axios.get(`https://89.232.165.248.sslip.io/api/v1/ml/check?id=${id}`);
                 if (res.data) {
                     this.fetchStatus = 'success'
                     this.videoPath = res.data.url
@@ -67,7 +67,7 @@ export const useVideoStore = defineStore('video',  {
                     const status = e.response?.status
                     switch (status) {
                         case 404:
-                            setTimeout(() => this.checkVideoStatus(this.videoId || ''), 15000)
+                            setTimeout(() => this.checkVideoStatus(this.videoId || ''), 5000)
                             break
                         default:
                             return {

@@ -17,7 +17,10 @@
             Кликните или перетащите файл
           </n-text>
           <n-p depth="3" style="margin: 8px 0 0 0">
-            Доступный формат файла:
+            Доступный формат: .mp4
+          </n-p>
+          <n-p depth="3" style="margin: 8px 0 0 0">
+            Максимальный размер: 250 МБ
           </n-p>
         </n-upload-dragger>
       </n-upload>
